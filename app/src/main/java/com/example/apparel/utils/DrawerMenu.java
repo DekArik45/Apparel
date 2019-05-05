@@ -138,8 +138,8 @@ public class DrawerMenu {
         final AppCompatActivity activityFinal = activity;
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Register as Traveller").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Register as Tour Provider").withIcon(GoogleMaterial.Icon.gmd_account_box);
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Register").withIcon(GoogleMaterial.Icon.gmd_account_box);
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("About Application").withIcon(GoogleMaterial.Icon.gmd_account_box);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
