@@ -102,6 +102,49 @@ public class ProfileFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
+    private String namaUser, emailUser, username, password, fotoUser;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFotoUser() {
+        return fotoUser;
+    }
+
+    public void setFotoUser(String fotoUser) {
+        this.fotoUser = fotoUser;
+    }
+
+    public String getNamaUser() {
+        return namaUser;
+    }
+
+    public void setNamaUser(String namaUser) {
+        this.namaUser = namaUser;
+    }
+
+    public String getEmailUser() {
+        return emailUser;
+    }
+
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
