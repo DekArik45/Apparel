@@ -71,7 +71,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
             }
         }
         else{
-            if (getListProduct().get(position).getKategori().equals(this.category)){
+//            if (getListProduct().get(position).getKategori().equals(this.category)){
                 categoryViewHolder.title.setText(getListProduct().get(position).getNama());
                 categoryViewHolder.price.setText(getListProduct().get(position).getHarga());
                 Glide.with(context)
@@ -94,10 +94,10 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
                         context.startActivity(i);
                     }
                 });
-            }
-            else{
-                categoryViewHolder.mCard.setVisibility(View.GONE);
-            }
+//            }
+//            else{
+//                categoryViewHolder.mCard.setVisibility(View.GONE);
+//            }
         }
 
 

@@ -16,6 +16,8 @@ import com.example.apparel.model.Transaction;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ListTransactionAdapter extends RecyclerView.Adapter<ListTransactionAdapter.CategoryViewHolder> {
     private Context context;
     private ArrayList<Transaction> listTransaction;
@@ -43,16 +45,16 @@ public class ListTransactionAdapter extends RecyclerView.Adapter<ListTransaction
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int position) {
         categoryViewHolder.tvNama.setText(getListTransaction().get(position).getNama());
-        categoryViewHolder.tvWarna.setText(getListTransaction().get(position).getWarna());
-        categoryViewHolder.tvAsalProduct.setText(getListTransaction().get(position).getAsalProduct());
-        categoryViewHolder.tvKetBayar.setText(getListTransaction().get(position).getKetBayar());
-        categoryViewHolder.tvTanggalTransaksi.setText(getListTransaction().get(position).getTanggalTransaksi());
-        categoryViewHolder.tvKetSampai.setText(getListTransaction().get(position).getKetSampai());
-        categoryViewHolder.tvTanggalSampai.setText(getListTransaction().get(position).getTanggalSampai());
-        categoryViewHolder.tvUkuran.setText(getListTransaction().get(position).getUkuran());
-        categoryViewHolder.tvJumlah.setText(getListTransaction().get(position).getJumlah());
+//        categoryViewHolder.tvWarna.setText(getListTransaction().get(position).getWarna());
+//        categoryViewHolder.tvAsalProduct.setText(getListTransaction().get(position).getAsalProduct());
+//        categoryViewHolder.tvKetBayar.setText(getListTransaction().get(position).getKetBayar());
+//        categoryViewHolder.tvTanggalTransaksi.setText(getListTransaction().get(position).getTanggalTransaksi());
+//        categoryViewHolder.tvKetSampai.setText(getListTransaction().get(position).getKetSampai());
+//        categoryViewHolder.tvTanggalSampai.setText(getListTransaction().get(position).getTanggalSampai());
+//        categoryViewHolder.tvUkuran.setText(getListTransaction().get(position).getUkuran());
+//        categoryViewHolder.tvJumlah.setText(getListTransaction().get(position).getJumlah());
         categoryViewHolder.tvHarga.setText(getListTransaction().get(position).getHarga());
-        categoryViewHolder.tvTotalHarga.setText(getListTransaction().get(position).getTotalHarga());
+//        categoryViewHolder.tvTotalHarga.setText(getListTransaction().get(position).getTotalHarga());
         Glide.with(context)
                 .load(getListTransaction().get(position).getGambar())
                 .apply(new RequestOptions().override(55, 55))
@@ -65,7 +67,7 @@ public class ListTransactionAdapter extends RecyclerView.Adapter<ListTransaction
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgGambar;
+        CircleImageView imgGambar;
         TextView tvNama;
         TextView tvUkuran;
         TextView tvWarna;
@@ -82,16 +84,16 @@ public class ListTransactionAdapter extends RecyclerView.Adapter<ListTransaction
             super(itemView);
             imgGambar = itemView.findViewById(R.id.foto_produk1);
             tvNama = itemView.findViewById(R.id.nama_produk1);
-            tvUkuran = itemView.findViewById(R.id.ukuran_produk1);
+//            tvUkuran = itemView.findViewById(R.id.ukuran_produk1);
             tvWarna = itemView.findViewById(R.id.warna_produk1);
-            tvAsalProduct = itemView.findViewById(R.id.asal_produk1);
-            tvKetBayar = itemView.findViewById(R.id.ket_bayar1);
-            tvTanggalTransaksi = itemView.findViewById(R.id.tanggal_produk1);
-            tvKetSampai = itemView.findViewById(R.id.pengiriman_produk1);
-            tvTanggalSampai = itemView.findViewById(R.id.sampai_produk1);
-            tvJumlah = itemView.findViewById(R.id.jumlah_produk1);
+//            tvAsalProduct = itemView.findViewById(R.id.asal_produk1);
+//            tvKetBayar = itemView.findViewById(R.id.ket_bayar1);
+//            tvTanggalTransaksi = itemView.findViewById(R.id.tanggal_produk1);
+//            tvKetSampai = itemView.findViewById(R.id.pengiriman_produk1);
+//            tvTanggalSampai = itemView.findViewById(R.id.sampai_produk1);
+//            tvJumlah = itemView.findViewById(R.id.jumlah_produk1);
             tvHarga = itemView.findViewById(R.id.harga1);
-            tvTotalHarga = itemView.findViewById(R.id.total_harga1);
+//            tvTotalHarga = itemView.findViewById(R.id.total_harga1);
         }
     }
 }
