@@ -1,14 +1,29 @@
 package com.example.apparel.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.QuickContactBadge;
 
+import com.example.apparel.ProductCategoryActivity;
 import com.example.apparel.R;
+import com.example.apparel.adapter.ItemProductMainAdapter;
+import com.example.apparel.constants.Fields;
+import com.example.apparel.data.ProductData;
+import com.example.apparel.model.ProductModel;
+
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -30,6 +45,11 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    RecyclerView mRecyclerProduct;
+    CircleImageView mTshirt, mCoats, mJersey, mUndershirt, mPants, mSweaters;
+    FrameLayout rootView;
+    private ArrayList<ProductModel> list = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -66,7 +86,86 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_home, container, false);
+        mCoats = rootView.findViewById(R.id.home_category_coats);
+        mJersey = rootView.findViewById(R.id.home_category_jersey);
+        mPants = rootView.findViewById(R.id.home_category_pants);
+        mSweaters = rootView.findViewById(R.id.home_category_sweaters);
+        mTshirt = rootView.findViewById(R.id.home_category_tshirt);
+        mUndershirt = rootView.findViewById(R.id.home_category_undershirt);
+
+        mRecyclerProduct = rootView.findViewById(R.id.home_recyclerview_product_favorite);
+
+        settingCategory();
+
+        settingDataListFavorite();
+
+        return rootView;
+//        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    public void settingCategory(){
+        mCoats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.COATS);
+                startActivity(i);
+            }
+        });
+
+        mJersey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.JERSEY);
+                startActivity(i);
+            }
+        });
+
+        mPants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.PANTS);
+                startActivity(i);
+            }
+        });
+
+        mSweaters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.SWEATERS);
+                startActivity(i);
+            }
+        });
+
+        mTshirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.TSHIRT);
+                startActivity(i);
+            }
+        });
+
+        mUndershirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(), ProductCategoryActivity.class);
+                i.putExtra("category",Fields.UNDERSHIRT);
+                startActivity(i);
+            }
+        });
+    }
+
+    public void settingDataListFavorite(){
+        list.addAll(ProductData.getListData());
+        mRecyclerProduct.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 3));
+        ItemProductMainAdapter productAdapter = new ItemProductMainAdapter(getContext());
+        productAdapter.setListProduct(list);
+        mRecyclerProduct.setAdapter(productAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

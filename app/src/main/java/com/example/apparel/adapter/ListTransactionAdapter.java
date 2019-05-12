@@ -1,4 +1,4 @@
-package com.example.apparel;
+package com.example.apparel.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.apparel.R;
+import com.example.apparel.model.Transaction;
 
 import java.util.ArrayList;
 
@@ -59,7 +61,7 @@ public class ListTransactionAdapter extends RecyclerView.Adapter<ListTransaction
 
     @Override
     public int getItemCount() {
-        return getListTransaction().size();
+        return 1;
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {

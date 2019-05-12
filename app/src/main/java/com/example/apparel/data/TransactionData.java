@@ -1,4 +1,6 @@
-package com.example.apparel;
+package com.example.apparel.data;
+
+import com.example.apparel.model.Transaction;
 
 import java.util.ArrayList;
 

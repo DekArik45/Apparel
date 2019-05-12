@@ -1,4 +1,4 @@
-package com.example.apparel;
+package com.example.apparel.model;
 
 public class Transaction {
     private String gambar, nama, warna, asalProduct, ketBayar, tanggalTransaksi, ketSampai, tanggalSampai, ukuran, jumlah, harga, totalHarga;

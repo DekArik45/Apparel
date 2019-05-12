@@ -122,4 +122,14 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setTitleTextColor(Color.rgb(135,135,135));
     }
 
+    //langsung keluar
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 }
