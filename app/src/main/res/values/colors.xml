@@ -11,7 +11,7 @@
     <color name="transparent">#00FAFAFA</color>
     <color name="gray_darker">#A9A9A9</color>
     <color name="top_gray">#878787</color>
-
+    <color name="harga">#f24333</color>
     <color name="colorSuccess">#007534</color>
     <color name="colorWarning">#ff9f43</color>
 

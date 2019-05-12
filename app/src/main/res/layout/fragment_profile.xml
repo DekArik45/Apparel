@@ -85,7 +85,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/profile_icon_order"
+                android:src="@drawable/profile_icon_shipment"
                 app:layout_constraintEnd_toStartOf="@id/profile_menu1"
                 app:layout_constraintStart_toStartOf="@id/profile_bawah"
                 app:layout_constraintTop_toTopOf="@id/profile_bawah" />
@@ -99,7 +99,7 @@
                 android:background="@drawable/profile_menu"
                 android:gravity="start"
                 android:paddingTop="15dp"
-                android:text="Order History"
+                android:text="Pending Shipment"
                 android:textAlignment="textStart"
                 android:textColor="#000"
                 android:textSize="12sp"

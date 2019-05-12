@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".FinishedOrderActivity">
 
+    <TextView
+        android:id="@+id/teks_judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:paddingStart="36dp"
+        android:text="Finished Order"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
