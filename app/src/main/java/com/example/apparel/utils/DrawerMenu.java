@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.apparel.AboutApplicationActivity;
 import com.example.apparel.LoginActivity;
 import com.example.apparel.MainActivity;
 import com.example.apparel.R;
@@ -43,22 +42,20 @@ public class DrawerMenu {
 
     public void createDrawer(Context context, AppCompatActivity activity, Toolbar mToolbar){
 
-        sharedpreferences = context.getSharedPreferences(Fields.LOGIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        sharedpreferences = context.getSharedPreferences(Fields.PREFERENCE, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(Fields.SESSION_STATUS,false);
 
         if (session) {
-            nama = sharedpreferences.getString("name","Guest");
-            if(sharedpreferences.getString("role_id","").equals("1")){
-                sub_title = "Traveller";
-            }
-            else{
-                sub_title = "Tour Provider";
-            }
+            nama = sharedpreferences.getString(Fields.NAME, null);
+            password = sharedpreferences.getString(Fields.PASSWORD, null);
+            username = sharedpreferences.getString(Fields.USERNAME, null);
+            sub_title = "Customer";
+            foto = sharedpreferences.getString(Fields.FOTO,null);
         }
         else{
             nama = "Guest";
             sub_title = "Silahkan Login";
-
+            foto = "http://firstbot18.000webhostapp.com/foto_apparel/avatar.png";
         }
 
         // Create the AccountHeader
@@ -77,9 +74,9 @@ public class DrawerMenu {
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(activity)
-                .withHeaderBackground(R.drawable.material_background)
+                .withHeaderBackground(R.drawable.header_drawermenu)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(nama).withEmail(sub_title)
+                        new ProfileDrawerItem().withName(nama).withEmail(sub_title).withIcon(foto)
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -139,7 +136,6 @@ public class DrawerMenu {
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Register").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("About Application").withIcon(GoogleMaterial.Icon.gmd_account_box);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -148,8 +144,7 @@ public class DrawerMenu {
                 .withToolbar(mToolbar)
                 .addDrawerItems(
                         item1,
-                        item2,
-                        item3
+                        item2
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -163,10 +158,6 @@ public class DrawerMenu {
                         }
                         if (drawerItem.getIdentifier() == 2){
                             Intent intent = new Intent(contextFinal, RegisterActivity.class);
-                            contextFinal.startActivity(intent);
-                        }
-                        if (drawerItem.getIdentifier() == 3){
-                            Intent intent = new Intent(contextFinal, AboutApplicationActivity.class);
                             contextFinal.startActivity(intent);
                         }
                         return false;

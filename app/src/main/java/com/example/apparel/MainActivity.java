@@ -21,16 +21,17 @@ import com.example.apparel.Fragment.CartFragment;
 import com.example.apparel.Fragment.HomeFragment;
 import com.example.apparel.Fragment.ProfileFragment;
 import com.example.apparel.Fragment.SearchFragment;
+import com.example.apparel.constants.Fields;
 import com.example.apparel.utils.DrawerMenu;
 
 public class MainActivity extends AppCompatActivity {
-    private Button logout;
-    public static final String PREFERENCE= "preference";
 
     BottomNavigationView mBottomNavigation;
     Toolbar mToolbar;
 
     String title = "Home";
+    SharedPreferences sharedpreferences;
+    Boolean session;
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +42,8 @@ public class MainActivity extends AppCompatActivity {
             replaceFragment(new HomeFragment());
             initBottomBar();
 
-//            logout = (Button)findViewById(R.id.main_logout);
-//
-//            logout.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    SharedPreferences preferences = getSharedPreferences(PREFERENCE , Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = preferences.edit();
-//                    editor.clear();
-//                    editor.commit();
-//                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-//                    startActivity(intent);
-//            }
-//        });
+            sharedpreferences = this.getSharedPreferences(Fields.PREFERENCE, Context.MODE_PRIVATE);
+            session = sharedpreferences.getBoolean(Fields.SESSION_STATUS, false);
     }
 
     private void initBottomBar(){

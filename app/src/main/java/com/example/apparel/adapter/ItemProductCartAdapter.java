@@ -17,13 +17,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.apparel.R;
 import com.example.apparel.data.ProductData;
+import com.example.apparel.model.ProductModel;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ItemProductCartAdapter extends RecyclerView.Adapter<ItemProductCartAdapter.CategoryViewHolder> {
 
     private Context context;
-    private ArrayList<ProductData> listProduct;
+    private ArrayList<ProductModel> listProduct;
 
     @NonNull
     @Override
@@ -34,25 +37,13 @@ public class ItemProductCartAdapter extends RecyclerView.Adapter<ItemProductCart
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, final int position) {
-//        categoryViewHolder.itemName.setText(getListMakanan().get(position).getTitle());
-//        categoryViewHolder.itemDesc.setText(getListMakanan().get(position).getDesc());
-//        Glide.with(context)
-//                .load(getListMakanan().get(position).getFoto())
-//                .apply(new RequestOptions())
-//                .into(categoryViewHolder.imgPhoto);
+        categoryViewHolder.itemName.setText(getListProduct().get(position).getNama());
+        categoryViewHolder.itemprice.setText(getListProduct().get(position).getHarga());
+        Glide.with(context)
+                .load(getListProduct().get(position).getFoto())
+                .apply(new RequestOptions())
+                .into(categoryViewHolder.imgPhoto);
 
-        categoryViewHolder.itemcard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent i = new Intent(context.getApplicationContext(), DetailActivity.class);
-//                i.putExtra("title",getListMakanan().get(position).getTitle());
-//                i.putExtra("desc",getListMakanan().get(position).getDesc());
-//                i.putExtra("foto",getListMakanan().get(position).getFoto());
-//                i.putExtra("recipe", getListMakanan().get(position).getRecipe());
-//                i.putExtra("method", getListMakanan().get(position).getMethod());
-//                context.startActivity(i);
-            }
-        });
     }
 
     public ItemProductCartAdapter(Context context) {
@@ -65,27 +56,25 @@ public class ItemProductCartAdapter extends RecyclerView.Adapter<ItemProductCart
 //        return 0;
     }
 
-    public ArrayList<ProductData> getListProduct() {
+    public ArrayList<ProductModel> getListProduct() {
         return listProduct;
     }
 
-    public void setListProduct(ArrayList<ProductData> listProduct) {
+    public void setListProduct(ArrayList<ProductModel> listProduct) {
         this.listProduct = listProduct;
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
         CardView itemcard;
-        TextView itemName, itemDesc;
-        ImageView imgPhoto;
-        Button btnFavorite, btnShare;
+        TextView itemName, itemprice, itemqty;
+        CircleImageView imgPhoto;
         CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-//            itemcard = itemView.findViewById(R.id.item_cardview);
-//            imgPhoto = itemView.findViewById(R.id.item_card_foto);
-//            itemName = itemView.findViewById(R.id.item_card_name);
-//            itemDesc= itemView.findViewById(R.id.item_card_desc);
-//            btnFavorite = itemView.findViewById(R.id.item_card_favorite);
-//            btnShare = itemView.findViewById(R.id.item_card_share);
+            itemcard = itemView.findViewById(R.id.item_cart_cardView);
+            imgPhoto = itemView.findViewById(R.id.item_cart_circleImageView);
+            itemName = itemView.findViewById(R.id.item_cart_product_name);
+            itemprice = itemView.findViewById(R.id.item_cart_product_price);
+            itemqty = itemView.findViewById(R.id.item_cart_qty);
         }
     }
 

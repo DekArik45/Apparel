@@ -1,123 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/login_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="LOGO"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.163" />
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_usernameLayout"
-        android:layout_width="297dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#EEEEEE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_logo"
-        app:layout_constraintVertical_bias="0.278">
+    </Toolbar>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/login_usernameText"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/top_header"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transparent"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="24dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="24dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#EEEEEE"
-            android:hint="Username"
-            android:padding="5dp" />
-    </android.support.design.widget.TextInputLayout>
+            android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_passwordLayout"
-        android:layout_width="299dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#EEEEEE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_usernameLayout"
-        app:layout_constraintVertical_bias="0.0">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/login_passwordText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#EEEEEE"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="5dp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="296dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#77BAFF"
-        android:text="LOGIN"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_passwordLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/login_toRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Click Here for register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.125" />
-
-    <TextView
-        android:id="@+id/login_copyright"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="© 2019 Apparel Team"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_toRegister"
-        app:layout_constraintVertical_bias="0.385" />
+            <ImageView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="125dp"
+                android:src="@drawable/logo_apparel_putih"/>
 
 
-</android.support.constraint.ConstraintLayout>
+            <!--<EditText-->
+            <!--android:id="@+id/login_email"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#fefefe"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:hint="E-mail"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:paddingBottom="10sp"-->
+            <!--android:paddingLeft="10sp"-->
+            <!--android:paddingRight="10sp"-->
+            <!--android:paddingTop="10sp"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColorHint="#dcdcdc" />-->
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:layout_height="wrap_content"
+                app:mtf_image="@drawable/ic_account">
+
+                <EditText
+
+                    android:id="@+id/login_usernameText"
+                    android:textColor="@color/colorPrimaryText"
+                    android:layout_width="match_parent"
+                    android:inputType="textEmailAddress"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#fff"
+                    android:hint="Email / Username"/>
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mtf_image="@drawable/ic_lock">
+
+                <EditText
+                    android:id="@+id/login_passwordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="#fff" />
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+
+
+            <!--<EditText-->
+            <!--android:id="@+id/login_password"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:background="#fefefe"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:hint="Password"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:paddingBottom="10sp"-->
+            <!--android:paddingLeft="10sp"-->
+            <!--android:paddingRight="10sp"-->
+            <!--android:paddingTop="10sp"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColorHint="#dcdcdc" />-->
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/login_button"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/big_button_height"
+                android:layout_marginTop="24dp"
+                fancy:fb_defaultColor="@color/colorSuccess"
+                fancy:fb_radius="30dp"
+                android:padding="8dp"
+                fancy:fb_text="MASUK"
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_fontIconResource="\uf0a9"
+                android:textSize="@dimen/big_button_fontSize"
+                fancy:fb_iconPosition="left" />
+
+            <!--divider-->
+            <View
+                android:id="@+id/view1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/MasukSebagaiIndustri"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorUnderlineDivider" />
+            <!--end divider-->
+
+            <TextView
+                android:id="@+id/login_toRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Or Click Here To Register"
+                android:textColor="#fefefe"
+                android:textStyle="normal"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/register_copyright"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/primary"
+                android:layout_marginBottom="24dp"
+                android:text="© 2019 Apparel Team"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apparel">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,29 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ProductCategoryActivity"></activity>
-        <activity android:name=".FinishedOrderActivity" />
-        <activity android:name=".PendingPaymentActivity" />
-        <activity android:name=".PendingShipmentActivity" />
-        <activity android:name=".OrderHistoryActivity" />
-        <activity android:name=".CategoriesActivity" />
-        <activity android:name=".ProductActivity" />
-        <activity android:name=".ProductDetailActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
-        <activity android:name=".AboutApplicationActivity" />
-        <activity
-            android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ProductCategoryActivity" />
+        <activity android:name=".FinishedOrderActivity" />
+        <activity android:name=".PendingPaymentActivity" />
+        <activity android:name=".PendingShipmentActivity" />
+        <activity android:name=".OrderHistoryActivity" />
+        <activity android:name=".CategoriesActivity" />
+        <activity android:name=".ProductActivity" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".MainActivity">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

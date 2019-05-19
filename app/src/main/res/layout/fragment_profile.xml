@@ -55,18 +55,6 @@
                 app:layout_constraintStart_toEndOf="@id/profile_foto"
                 app:layout_constraintTop_toBottomOf="@id/profile_nama" />
 
-            <Button
-                android:id="@+id/profile_edit"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/profile_button"
-                android:text="Edit Profile"
-                android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@id/profile_foto"
-                app:layout_constraintTop_toBottomOf="@id/profile_email" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -86,12 +74,12 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/profile_icon_shipment"
-                app:layout_constraintEnd_toStartOf="@id/profile_menu1"
+                app:layout_constraintEnd_toStartOf="@id/profile_pending_shipment"
                 app:layout_constraintStart_toStartOf="@id/profile_bawah"
                 app:layout_constraintTop_toTopOf="@id/profile_bawah" />
 
             <Button
-                android:id="@+id/profile_menu1"
+                android:id="@+id/profile_pending_shipment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -116,7 +104,7 @@
                 android:layout_marginRight="56dp"
                 android:src="@drawable/profile_icon_next"
                 app:layout_constraintEnd_toEndOf="@id/profile_bawah"
-                app:layout_constraintStart_toEndOf="@id/profile_menu1"
+                app:layout_constraintStart_toEndOf="@id/profile_pending_shipment"
                 app:layout_constraintTop_toTopOf="@id/profile_bawah" />
 
             <ImageView
@@ -127,12 +115,12 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="24dp"
                 android:src="@drawable/profile_icon_pending"
-                app:layout_constraintEnd_toStartOf="@id/profile_menu2"
+                app:layout_constraintEnd_toStartOf="@id/profile_pending_payment"
                 app:layout_constraintStart_toStartOf="@id/profile_bawah"
                 app:layout_constraintTop_toBottomOf="@id/profile_icon1" />
 
             <Button
-                android:id="@+id/profile_menu2"
+                android:id="@+id/profile_pending_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -144,10 +132,10 @@
                 android:textAlignment="textStart"
                 android:textColor="#000"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/profile_menu3"
+                app:layout_constraintBottom_toTopOf="@+id/profile_finished_order"
                 app:layout_constraintEnd_toEndOf="@id/profile_bawah"
                 app:layout_constraintStart_toEndOf="@id/profile_icon2"
-                app:layout_constraintTop_toBottomOf="@id/profile_menu1" />
+                app:layout_constraintTop_toBottomOf="@id/profile_pending_shipment" />
 
             <ImageView
                 android:id="@+id/profile_next2"
@@ -158,7 +146,7 @@
                 android:layout_marginRight="56dp"
                 android:src="@drawable/profile_icon_next"
                 app:layout_constraintEnd_toEndOf="@id/profile_bawah"
-                app:layout_constraintStart_toEndOf="@id/profile_menu2"
+                app:layout_constraintStart_toEndOf="@id/profile_pending_payment"
                 app:layout_constraintTop_toBottomOf="@id/profile_next1" />
 
             <ImageView
@@ -169,12 +157,12 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="24dp"
                 android:src="@drawable/profile_icon_finish"
-                app:layout_constraintEnd_toStartOf="@id/profile_menu3"
+                app:layout_constraintEnd_toStartOf="@id/profile_finished_order"
                 app:layout_constraintStart_toStartOf="@id/profile_bawah"
                 app:layout_constraintTop_toBottomOf="@id/profile_icon2" />
 
             <Button
-                android:id="@+id/profile_menu3"
+                android:id="@+id/profile_finished_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -186,7 +174,7 @@
                 android:textAlignment="textStart"
                 android:textColor="#000"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/profile_menu2"
+                app:layout_constraintTop_toBottomOf="@id/profile_pending_payment"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_bawah"
                 app:layout_constraintEnd_toEndOf="@id/profile_bawah"
                 app:layout_constraintStart_toEndOf="@id/profile_icon3" />
@@ -200,7 +188,7 @@
                 android:layout_marginRight="56dp"
                 android:src="@drawable/profile_icon_next"
                 app:layout_constraintEnd_toEndOf="@id/profile_bawah"
-                app:layout_constraintStart_toEndOf="@id/profile_menu3"
+                app:layout_constraintStart_toEndOf="@id/profile_finished_order"
                 app:layout_constraintTop_toBottomOf="@id/profile_next2" />
 
         </android.support.constraint.ConstraintLayout>

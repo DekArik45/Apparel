@@ -4,11 +4,26 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.example.apparel.R;
+import com.example.apparel.adapter.ItemProductCartAdapter;
+import com.example.apparel.adapter.ItemProductMainAdapter;
+import com.example.apparel.data.ProductData;
+import com.example.apparel.data.TransactionData;
+import com.example.apparel.model.ProductModel;
+import com.example.apparel.model.Transaction;
+
+import java.util.ArrayList;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +42,12 @@ public class CartFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView mRecycler;
+    FancyButton mBtn;
+    FrameLayout rootView;
+    private ArrayList<ProductModel> list = new ArrayList<>();
+    private ArrayList<Transaction> listData = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +86,30 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_cart, container, false);
+
+        mRecycler = rootView.findViewById(R.id.cart_recyclerView);
+        mBtn = rootView.findViewById(R.id.checkout_button);
+
+
+//        settingRecycler();
+        return rootView;
+    }
+
+    public void settingRecycler(){
+        this.setListData(TransactionData.getListData());
+
+//        for (int i=0; i<getListData().size(); i++){
+//            if (getListData().get(i).getKetBayar()){
+//                listAll.add(getList().get(i));
+//            }
+//        }
+
+        list.addAll(ProductData.getListData());
+        mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true));
+        ItemProductCartAdapter productAdapter = new ItemProductCartAdapter(getContext());
+        productAdapter.setListProduct(list);
+        mRecycler.setAdapter(productAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -85,6 +129,14 @@ public class CartFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public ArrayList<Transaction> getListData() {
+        return listData;
+    }
+
+    public void setListData(ArrayList<Transaction> listData) {
+        this.listData = listData;
     }
 
     /**

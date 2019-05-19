@@ -2,6 +2,7 @@ package com.example.apparel.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.apparel.FinishedOrderActivity;
+import com.example.apparel.LoginActivity;
 import com.example.apparel.PendingPaymentActivity;
+import com.example.apparel.PendingShipmentActivity;
 import com.example.apparel.R;
+import com.example.apparel.constants.Fields;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +42,13 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button btn1;
+    Button btnPendingShipment,btnPendingPayment, btnFinished;
+    CircleImageView profileImage;
     FrameLayout rootView;
+    SharedPreferences sharedpreferences;
+    Boolean session;
+    String nama, email, foto, username, password;
+    TextView profileNama, profileEmail;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,12 +88,53 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = (FrameLayout) inflater.inflate(R.layout.fragment_profile, container, false);
-        btn1 = rootView.findViewById(R.id.profile_menu1);
+        btnPendingShipment = rootView.findViewById(R.id.profile_pending_shipment);
+        btnPendingPayment = rootView.findViewById(R.id.profile_pending_payment);
+        btnFinished = rootView.findViewById(R.id.profile_finished_order);
+        sharedpreferences = getActivity().getApplicationContext().getSharedPreferences(Fields.PREFERENCE, Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(Fields.SESSION_STATUS, false);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        if (!session) {
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+
+        nama = sharedpreferences.getString(Fields.NAME, null);
+        email = sharedpreferences.getString(Fields.EMAIL, null);
+        foto = sharedpreferences.getString(Fields.FOTO, null);
+        username = sharedpreferences.getString(Fields.USERNAME, null);
+        password = sharedpreferences.getString(Fields.PASSWORD, null);
+
+        profileEmail = rootView.findViewById(R.id.profile_email);
+        profileNama = rootView.findViewById(R.id.profile_nama);
+        profileImage = rootView.findViewById(R.id.profile_foto);
+
+        profileNama.setText(nama);
+        profileEmail.setText(email);
+
+        Glide.with(getContext())
+                .load(foto)
+                .apply(new RequestOptions())
+                .into(profileImage);
+
+        btnPendingPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), PendingPaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnPendingShipment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), PendingShipmentActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnFinished.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), FinishedOrderActivity.class);
                 startActivity(intent);
             }
         });

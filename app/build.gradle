@@ -34,12 +34,17 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-
+    implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original'
+//Button
+    implementation 'com.github.medyo:fancybuttons:1.9.0'
+    implementation 'com.github.florent37:materialtextfield:1.0.5'
     //Drawer Menu
     implementation('com.mikepenz:materialdrawer:5.9.5@aar') {
         transitive = true
         exclude group: 'com.android.support'
     }
+    //Material Icon View
+    implementation 'net.steamcrafted:materialiconlib:1.1.5'
 
     implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original'
     implementation 'com.squareup.picasso:picasso:2.3.2'

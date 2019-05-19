@@ -13,7 +13,20 @@ public class Fields {
     public static final String PANTS = "Pants";
     public static final String UNDERSHIRT = "Undershirt";
 
+    public static final String PRODUCT_PREFERENCE = "myprefProduct";
+    public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_PRICE = "product_price";
+    public static final String PRODUCT_FOTO = "product_foto";
+    public static final String PRODUCT_QTY = "product_qty";
 
+
+
+    public static final String PREFERENCE = "mypref";
+    public static final String NAME = "nama";
+    public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String FOTO = "foto";
     public Fields(){
 
     }

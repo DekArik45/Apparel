@@ -4,11 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.apparel.R;
+import com.example.apparel.adapter.ProductCategoryAdapter;
+import com.example.apparel.data.ProductData;
+import com.example.apparel.model.ProductModel;
+
+import java.util.ArrayList;
 
 
 /**
@@ -30,6 +44,13 @@ public class SearchFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    EditText search;
+    FrameLayout rootView;
+    RecyclerView mrecycler;
+
+    private ArrayList<ProductModel> list = new ArrayList<>();
+    private ArrayList<ProductModel> listData = new ArrayList<>();
 
     public SearchFragment() {
         // Required empty public constructor
@@ -66,9 +87,39 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_search, container, false);
 
+        search = rootView.findViewById(R.id.search_editSearch);
+        mrecycler = rootView.findViewById(R.id.search_recycler);
 
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        return rootView;
+    }
+
+    public void performSearch(){
+        this.setListData(ProductData.getListData());
+
+        for (int i=0; i<getListData().size(); i++){
+            if (search.getText().toString().equals(getListData().get(i).getKategori()) || search.getText().toString().equals(getListData().get(i).getNama()) || search.getText().toString().equals(getListData().get(i).getBrand())){
+                list.add(getListData().get(i));
+            }
+        }
+
+        mrecycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        ProductCategoryAdapter productAdapter = new ProductCategoryAdapter(getContext(),"0", "search");
+
+        productAdapter.setListProduct(list);
+        mrecycler.setAdapter(productAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -93,6 +144,14 @@ public class SearchFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public ArrayList<ProductModel> getListData() {
+        return listData;
+    }
+
+    public void setListData(ArrayList<ProductModel> listData) {
+        this.listData = listData;
     }
 
     /**

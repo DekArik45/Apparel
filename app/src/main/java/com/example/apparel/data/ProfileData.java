@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public class ProfileData {
 
     public static String[][] data = new String[][]{
-            {"Adji Nur", "adji@gmail.com", "adji", "adji123", "link"},
-            {"Ari M", "ari@gmail.com", "ari", "ari123", "link"},
-            {"Gusade Taruna", "gusade@gmail.com", "gusade", "gusade123", "link"}
-
+            {"Adji Nur", "adji@gmail.com", "adji", "adji123", "http://firstbot18.000webhostapp.com/foto_apparel/foto_profile.JPG"},
+            {"I Kadek Ari Melinia Antara", "ari@gmail.com", "ari", "ari123", "http://firstbot18.000webhostapp.com/foto_apparel/ari.jpg"},
+            {"Gusade Taruna", "gusade@gmail.com", "gusade", "gusade123", "http://firstbot18.000webhostapp.com/foto_apparel/84068.jpg"}
     };
 
     public static ArrayList<UserModel> getListData(){

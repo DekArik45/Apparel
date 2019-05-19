@@ -1,6 +1,7 @@
 package com.example.apparel;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -13,9 +14,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.apparel.adapter.ProductCategoryAdapter;
+import com.example.apparel.constants.Fields;
 import com.example.apparel.data.ProductData;
 import com.example.apparel.model.ProductModel;
 
@@ -33,7 +36,9 @@ public class ProductCategoryActivity extends AppCompatActivity {
     Cursor mCursor;
 
     RecyclerView mProductPopular, mProduct;
+    private ArrayList<ProductModel> listPopular = new ArrayList<>();
     private ArrayList<ProductModel> list = new ArrayList<>();
+    private ArrayList<ProductModel> listAll = new ArrayList<>();
 
     String category;
 
@@ -60,7 +65,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
     }
 
     public void settingProductPopular(){
-        list.addAll(ProductData.getListData());
+        listPopular.addAll(ProductData.getListData());
         mProductPopular.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         ProductCategoryAdapter productAdapter = new ProductCategoryAdapter(this, "1", category);
 
@@ -69,15 +74,23 @@ public class ProductCategoryActivity extends AppCompatActivity {
 //            mArrayList.add(mCursor.getWhateverTypeYouWant(WHATEVER_COLUMN_INDEX_YOU_WANT));
 //        }
 
-        productAdapter.setListProduct(list);
+        productAdapter.setListProduct(listPopular);
         mProductPopular.setAdapter(productAdapter);
     }
 
     public void settingProductAll(){
-        list.addAll(ProductData.getListData());
+        this.setList(ProductData.getListData());
+
+        Log.e("list = ",String.valueOf(getList().size()));
+        for (int i=0; i<getList().size(); i++){
+            if (category.equals(getList().get(i).getKategori())){
+                listAll.add(getList().get(i));
+            }
+        }
+//        list.addAll(ProductData.getListData());
         mProduct.setLayoutManager(new GridLayoutManager(this, 3));
         ProductCategoryAdapter productAdapter = new ProductCategoryAdapter(this, "0", category);
-        productAdapter.setListProduct(list);
+        productAdapter.setListProduct(listAll);
         mProduct.setAdapter(productAdapter);
     }
 
@@ -165,5 +178,13 @@ public class ProductCategoryActivity extends AppCompatActivity {
         finish();
         onBackPressed();
         return true;
+    }
+
+    public ArrayList<ProductModel> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<ProductModel> list) {
+        this.list = list;
     }
 }
