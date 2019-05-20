@@ -43,7 +43,13 @@ public class MainActivity extends AppCompatActivity {
             initBottomBar();
 
             sharedpreferences = this.getSharedPreferences(Fields.PREFERENCE, Context.MODE_PRIVATE);
+
             session = sharedpreferences.getBoolean(Fields.SESSION_STATUS, false);
+
+//        SharedPreferences msharedpreferences = this.getSharedPreferences(Fields.PRODUCT_PREFERENCE, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = msharedpreferences.edit();
+//        editor.clear();
+//        editor.apply();
     }
 
     private void initBottomBar(){

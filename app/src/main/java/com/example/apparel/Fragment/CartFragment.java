@@ -1,9 +1,14 @@
 package com.example.apparel.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +17,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.example.apparel.LoginActivity;
+import com.example.apparel.MainActivity;
 import com.example.apparel.R;
 import com.example.apparel.adapter.ItemProductCartAdapter;
 import com.example.apparel.adapter.ItemProductMainAdapter;
+import com.example.apparel.constants.Fields;
 import com.example.apparel.data.ProductData;
 import com.example.apparel.data.TransactionData;
 import com.example.apparel.model.ProductModel;
 import com.example.apparel.model.Transaction;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -47,9 +59,17 @@ public class CartFragment extends Fragment {
     FancyButton mBtn;
     FrameLayout rootView;
     private ArrayList<ProductModel> list = new ArrayList<>();
-    private ArrayList<Transaction> listData = new ArrayList<>();
+    private ArrayList<ProductModel> listData = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
+
+    private SharedPreferences mSharedPreferences, mSharedPreferencesLogin;
+    Boolean session = false;
+
+    //Set the values
+    Set<String> listCartNama = new HashSet<String>();
+    Set<String> listCartPrice = new HashSet<String>();
+    Set<String> listCartFoto = new HashSet<String>();
 
     public CartFragment() {
         // Required empty public constructor
@@ -88,28 +108,77 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = (FrameLayout) inflater.inflate(R.layout.fragment_cart, container, false);
 
+        mSharedPreferences = getActivity().getSharedPreferences(Fields.PRODUCT_PREFERENCE, Context.MODE_PRIVATE);
+
+        mSharedPreferencesLogin = getActivity().getSharedPreferences(Fields.PREFERENCE, Context.MODE_PRIVATE);
+        session = mSharedPreferencesLogin.getBoolean(Fields.SESSION_STATUS,false);
+
+        listCartNama = mSharedPreferences.getStringSet(Fields.PRODUCT_NAME, null);
+        listCartPrice = mSharedPreferences.getStringSet(Fields.PRODUCT_PRICE, null);
+        listCartFoto = mSharedPreferences.getStringSet(Fields.PRODUCT_FOTO, null);
+
+
+
         mRecycler = rootView.findViewById(R.id.cart_recyclerView);
         mBtn = rootView.findViewById(R.id.checkout_button);
 
+        settingRecycler();
 
-//        settingRecycler();
+        mBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (session){
+
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.clear();
+                    editor.apply();
+
+                    Toast.makeText(getContext(), " Checkout Succed", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getActivity(),MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+                else{
+                    Toast.makeText(getContext(), " Login First", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return rootView;
     }
 
     public void settingRecycler(){
-        this.setListData(TransactionData.getListData());
+        this.setListData(ProductData.getListData());
+        if (listCartNama != null || listCartFoto != null || listCartPrice != null){
+            List<String> arrayListNama = new ArrayList<String>();
+            List<String> arrayListPrice = new ArrayList<String>();
+            List<String> arrayListFoto = new ArrayList<String>();
 
-//        for (int i=0; i<getListData().size(); i++){
-//            if (getListData().get(i).getKetBayar()){
-//                listAll.add(getList().get(i));
-//            }
-//        }
+            for (String temp : listCartNama) {
+                arrayListNama.add(temp);
+            }for (String temp : listCartFoto) {
+                arrayListFoto.add(temp);
+            }for (String temp : listCartPrice) {
+                arrayListPrice.add(temp);
+            }
 
-        list.addAll(ProductData.getListData());
+            int j;
+            for (int i=0; i<getListData().size(); i++){
+                for (j=0;j<1;j++){
+                    if (arrayListNama.get(j).equals(getListData().get(i).getNama()) && arrayListPrice.get(j).equals(getListData().get(i).getHarga()) && arrayListFoto.get(j).equals(getListData().get(i).getFoto())){
+                        list.add(getListData().get(i));
+                        Log.e("ada = ","1");
+                    }
+                }
+            }
+
+//        list.addAll(ProductData.getListData());
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true));
         ItemProductCartAdapter productAdapter = new ItemProductCartAdapter(getContext());
         productAdapter.setListProduct(list);
         mRecycler.setAdapter(productAdapter);
+
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -131,11 +200,11 @@ public class CartFragment extends Fragment {
         mListener = null;
     }
 
-    public ArrayList<Transaction> getListData() {
+    public ArrayList<ProductModel> getListData() {
         return listData;
     }
 
-    public void setListData(ArrayList<Transaction> listData) {
+    public void setListData(ArrayList<ProductModel> listData) {
         this.listData = listData;
     }
 
